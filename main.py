@@ -122,7 +122,7 @@ n = len(inp)
 class NoeudDuTrie:
     def __init_(self):
         self.children = [None] * 26
-        self.isEndOFWord = False
+        self.finDuMot = False
 
 
 class Trie:
@@ -136,27 +136,27 @@ class Trie:
         return ord(lettre) - ord('a')
 
     def inserer(self, key):
-        pCrawl = self.root
+        noeudAcc = self.root
         longueur = len(key)
 
         for level in range(longueur):
             index = self.lettreAIndice(key[level])
 
-            if not pCrawl.children[index]:
-                pCrawl.children[index] = self.getNode()
-            pCrawl = pCrawl.children[index]
+            if not noeudAcc.children[index]:
+                noeudAcc.children[index] = self.getNode()
+            noeudAcc = noeudAcc.children[index]
 
-        pCrawl.isEndOFWord = True
+        noeudAcc.finDuMot = True
 
     def recherche(self, key):
-        pCrawl = self.root
+        noeudAcc = self.root
         longueur = len(key)
         for level in range(longueur):
             index = self.lettreAIndice(key[level])
-            if not pCrawl.children[index]:
+            if not noeudAcc.children[index]:
                 return False
-            pCrawl = pCrawl.children[index]
-        return pCrawl.isEndOFWord
+            noeudAcc = noeudAcc.children[index]
+        return noeudAcc.finDuMot
 
 t = Trie()
 
