@@ -166,7 +166,7 @@ t = Trie()
 
 # algorithme de Rabin-Karp
 
-d = 256
+d = 100
 
 
 def search(pat, txt, q):
@@ -202,9 +202,9 @@ def search(pat, txt, q):
             if t < 0:
                 t = t + q
 
-# txt = "GEEKS FOR GEEKS"
-# pat = "GEEK"
+txt = "truc je suis turc avec des trucs"
+pat = "truc"
 
-# q = 101
+q = 101
 
-# search(pat, txt, q)
+search(pat, txt, q)
