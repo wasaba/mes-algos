@@ -160,7 +160,13 @@ class Trie:
 
 t = Trie()
 
+t.inserer("the")
+t.inserer("constitution")
+t.inserer("them")
 
+print(t.recherche("the"))
+print(t.recherche("const"))
+print(t.recherche("them"))
 
 # traitement des chaînes de caractères
 
