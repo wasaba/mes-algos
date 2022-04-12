@@ -178,24 +178,13 @@ class Trie:
             return racine
 
         indice = ord(clé[profondeur]) - ord('a')
-        racine.children[indice] = self.enlever(clé, profondeur + 1, racine.children[indice]) # veiller ici à l'argument de la fonction récursive
+        racine.children[indice] = self.enlever(clé, profondeur + 1, racine.children[
+            indice])  # veiller ici à l'argument de la fonction récursive
 
         if self.vide(racine) and not racine.finDuMot:
             racine = None
 
         return racine
-
-t = Trie()
-
-t.inserer("the")
-t.inserer("constitution")
-t.inserer("them")
-
-print(t.recherche("the"))
-print(t.recherche("them"))
-t.enlever("them", 0)
-print(t.recherche("the"))
-print(t.recherche("them"))
 
 
 # traitement des chaînes de caractères
@@ -245,3 +234,31 @@ def search(pat, txt, q):
 # q = 101
 
 # search(pat, txt, q)
+
+# Combinatoire
+
+# trouver la plus grande puissance tel que k^x | n!
+
+def puissance(n, k):
+    reste = 0
+    while n:
+        n = n // k
+        reste += n
+    return reste
+
+
+# calculer coefficient binomial (algorithme récursif de base en O(n*max(n-1,k))
+
+def C(n, k):
+    if k > n:
+        return 0
+    if k == 0 or k == n:
+        return 1
+
+    return C(n - 1, k - 1) + C(n - 1, k)
+
+
+# nombres de Catalan
+
+def catalan(n):
+    return int((1 / (n + 1) * C(2 * n, n)))
