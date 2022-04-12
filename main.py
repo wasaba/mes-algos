@@ -120,7 +120,7 @@ n = len(inp)
 # structure de données: les Tries
 
 class NoeudDuTrie:
-    def __init_(self):
+    def __init__(self):
         self.children = [None] * 26
         self.finDuMot = False
 
@@ -158,6 +158,33 @@ class Trie:
             noeudAcc = noeudAcc.children[index]
         return noeudAcc.finDuMot
 
+    def vide(self, racine):
+        for i in range(26):
+            if racine.children[i] is not None:
+                return False
+        return True
+
+    def enlever(self, clé, profondeur, noeud=None):
+        racine = self.root if noeud is None else noeud
+
+        if racine is None:
+            return None
+
+        if profondeur == len(clé):
+            if racine.finDuMot:
+                racine.finDuMot = False
+            if self.vide(racine):
+                racine = None
+            return racine
+
+        indice = ord(clé[profondeur]) - ord('a')
+        racine.children[indice] = self.enlever(clé, profondeur + 1, racine.children[indice]) # veiller ici à l'argument de la fonction récursive
+
+        if self.vide(racine) and not racine.finDuMot:
+            racine = None
+
+        return racine
+
 t = Trie()
 
 t.inserer("the")
@@ -165,8 +192,11 @@ t.inserer("constitution")
 t.inserer("them")
 
 print(t.recherche("the"))
-print(t.recherche("const"))
 print(t.recherche("them"))
+t.enlever("them", 0)
+print(t.recherche("the"))
+print(t.recherche("them"))
+
 
 # traitement des chaînes de caractères
 
@@ -208,9 +238,10 @@ def search(pat, txt, q):
             if t < 0:
                 t = t + q
 
-txt = "truc je suis turc avec des trucs"
-pat = "truc"
 
-q = 101
+# txt = "truc je suis turc avec des trucs"
+# pat = "truc"
 
-search(pat, txt, q)
+# q = 101
+
+# search(pat, txt, q)
