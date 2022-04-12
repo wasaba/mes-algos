@@ -262,3 +262,24 @@ def C(n, k):
 
 def catalan(n):
     return int((1 / (n + 1) * C(2 * n, n)))
+
+
+# GÉOMETRIE
+
+# cette partie regroupe de nombreux concepts de géometrie
+# je vais donc transcrire en premier lieu la géometrie dans un contexte algorithmique.
+
+# Définitions et concepts de base
+
+# point en 2 dimensions
+
+class Point2D:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+class Point3D:
+    def __init__(self,x,y,z):
+        self.x = x
+        self.y = y
+        self.z = z
