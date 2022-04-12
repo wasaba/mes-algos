@@ -6,43 +6,44 @@ from collections import defaultdict
 
 # Parcours basiques
 
-class Graph:
+class Graphe:
     def __init__(self):
-        self.graph = defaultdict(list)
+        self.graphe = defaultdict(list)
 
-    def addEdge(self, u, v):
-        self.graph[u].append(v)
+    def AjoutNoeud(self, u, v):
+        self.graphe[u].append(v)
 
     # Breadth First Search (méthode itérative)
     def BFS(self, s):
-        visited = [s]
+        visite = [s]
 
         queue = [s]
 
         while queue:
             f = queue.pop()
             print(f)
-            for i in self.graph[f]:
-                if i not in visited:
+            for i in self.graphe[f]:
+                if i not in visite:
                     queue.append(i)
-                    visited.append(i)
+                    visite.append(i)
 
     # Depth First Search (méthode récursive)
-    def DFS(self, s, visited=set()):
-        visited.add(s)
+
+    def DFS(self, s, visite=set()):
+        visite.add(s)
         print(s, end=" ")
-        for neighbour in self.graph[s]:
-            if neighbour not in visited:
-                self.DFS(neighbour, visited)
+        for voisin in self.graphe[s]:
+            if voisin not in visite:
+                self.DFS(voisin, visite)
 
 
-g = Graph()
-g.addEdge(0, 1)
-g.addEdge(0, 2)
-g.addEdge(1, 2)
-g.addEdge(2, 0)
-g.addEdge(2, 3)
-g.addEdge(3, 3)
+monGraphe = Graphe()
 
-print("Following is DFS from (starting from vertex 2)")
-g.DFS(2)
+monGraphe.AjoutNoeud(0, 1)
+monGraphe.AjoutNoeud(0, 2)
+monGraphe.AjoutNoeud(1, 2)
+monGraphe.AjoutNoeud(2, 0)
+monGraphe.AjoutNoeud(2, 3)
+monGraphe.AjoutNoeud(3, 3)
+
+monGraphe.DFS(2)
