@@ -12,6 +12,7 @@ class Graphe:
 
     def AjoutNoeud(self, u, v):
         self.graphe[u].append(v)
+        self.graphe[v].append(u)
 
     # Breadth First Search (méthode itérative)
     def BFS(self, s):
@@ -36,14 +37,33 @@ class Graphe:
             if voisin not in visite:
                 self.DFS(voisin, visite)
 
+    # trouver des élements connectés
+
+    def UtilitaireDFS(self, temporaire, noeud, visité):
+        visité[noeud] = True
+        temporaire.append(noeud)
+
+        for i in self.graphe[noeud]:
+            if not visité[i]:
+                temp = self.UtilitaireDFS(temporaire, i, visité)
+
+        return temporaire
+
+    def connectedComponents(self):
+        visités = []
+        cc = []
+        for i in self.graphe:
+            visités.append(False)
+
+        for i in self.graphe:
+            if not visités[i]:
+                cc.append(self.UtilitaireDFS([], i, visités))
+        return cc
 
 monGraphe = Graphe()
 
-monGraphe.AjoutNoeud(0, 1)
-monGraphe.AjoutNoeud(0, 2)
-monGraphe.AjoutNoeud(1, 2)
-monGraphe.AjoutNoeud(2, 0)
+monGraphe.AjoutNoeud(1, 0)
 monGraphe.AjoutNoeud(2, 3)
-monGraphe.AjoutNoeud(3, 3)
+monGraphe.AjoutNoeud(3, 4)
 
-monGraphe.DFS(2)
+print(monGraphe.connectedComponents())

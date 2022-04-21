@@ -1,5 +1,6 @@
 import math
 
+
 # GÉOMETRIE
 
 # cette partie regroupe de nombreux concepts de géometrie
@@ -33,8 +34,9 @@ class Point2D:
     def dot(self, t):
         return self.x * t.x + self.y * t.y
 
+
 class Point3D:
-    def __init__(self,x,y,z):
+    def __init__(self, x, y, z):
         self.x = x
         self.y = y
         self.z = z

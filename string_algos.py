@@ -1,5 +1,6 @@
 import math
 
+
 # structure de données: les Tries
 
 class NoeudDuTrie:
@@ -109,7 +110,6 @@ def search(pat, txt, q):
 
             if t < 0:
                 t = t + q
-
 
 # txt = "truc je suis turc avec des trucs"
 # pat = "truc"
